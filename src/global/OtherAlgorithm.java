@@ -43,4 +43,23 @@ public class OtherAlgorithm {
 		return false;
 	}
 	
+	/**
+	 * Returns the median of the three values provided.
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @return
+	 */
+	static int median(int a, int b, int c) {
+		if (a < b) {
+			if (b < c) return b;
+			if (a < c) return c;
+			return a;
+		} else {
+			if (a < c) return a;
+			if (b < c) return c;
+			return b;
+		}
+	}
+	
 }

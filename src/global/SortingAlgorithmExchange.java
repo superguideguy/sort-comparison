@@ -33,16 +33,41 @@ public class SortingAlgorithmExchange {
 	 * Sorts the input array with quicksort, selecting the pivot from the median of three method.
 	 * The Hoare partition scheme is used.
 	 * 
+	 * By default, lo should be 0, and hi should be arr.length-1.
+	 * 
 	 * The algorithm preCheck(arr) is run before the quicksort begins. This affects performance.
 	 * Runs on average in O(n log n) time. Runs at worst in O(n^2) time. Requires at most O(n) additional memory. Unstable.
 	 * 
 	 * @param arr
 	 */
-	static void quicksortMedianOfThree(int[] arr) {
+	static void quicksortMedianOfThree(int[] arr, int lo, int hi) {
 		if (OtherAlgorithm.preCheck(arr)) return;
-		qMo3(arr,0,arr.length-1);
+		int p = qMo3(arr,lo,hi);
+		quicksortMedianOfThree(arr,lo,p);
+		quicksortMedianOfThree(arr,p+1,hi);
 	}
-	private static void qMo3(int[] arr, int lo, int hi) {
+	private static int qMo3(int[] arr, int lo, int hi) {
+		int mid = lo + ((hi-lo)/2);
+		int pivot = OtherAlgorithm.median(arr[lo], arr[mid], arr[hi]);
+		return partition(arr,lo,hi,pivot);
+	}
+	
+	private static int partition(int[] arr, int lo, int hi, int pivot) {
+		int i = lo - 1;
+		int j = hi + 1;
+		while (true) {
+			do {
+				i = i + 1;
+			} while (arr[i] < pivot);
+			
+			do {
+				j = j - 1;
+			} while (arr[i] > pivot);
+			
+			if (i >= j) return j;
+			
+			ShufflingAlgorithm.exchange(arr, i, j);
+		}
 		
 	}
 	
