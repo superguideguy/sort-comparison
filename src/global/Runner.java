@@ -1,5 +1,6 @@
 package global;
 
+import java.util.Arrays;
 
 public class Runner {
 
@@ -8,27 +9,8 @@ public class Runner {
 		//Sort Thread
 		//Escape/Break/Watchdog Thread
 		
-		//All of the following should return 2
-		temp(1,2,3);
-		temp(1,3,2);
-		temp(2,1,3);
-		temp(2,3,1);
-		temp(3,1,2);
-		temp(3,2,1);
-			System.out.println();
-		temp(2,2,3);
-		temp(2,3,2);
-		temp(3,2,2);
-		temp(2,2,1);
-		temp(2,1,2);
-		temp(1,2,2);
-			System.out.println();
-		temp(2,2,2);
-		
+		int[] arr = {3,1,9,5,2,4,7,8,6};
+		SortingAlgorithmExchange.quicksortMedianOfThree(arr, 0, arr.length-1);
+		System.out.println(Arrays.toString(arr));
 	}
-	
-	static void temp(int a, int b, int c) {
-		System.out.print(OtherAlgorithm.median(a, b, c));
-	}
-	
 }
