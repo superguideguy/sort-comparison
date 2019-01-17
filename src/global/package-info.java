@@ -1,8 +1,0 @@
-/**
- * 
- */
-/**
- * @author superguideguy
- *
- */
-package global;

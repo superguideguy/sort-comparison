@@ -1,4 +1,4 @@
-package global;
+package com.github.superguideguy.sort.comparison.global;
 
 import java.util.Arrays;
 
