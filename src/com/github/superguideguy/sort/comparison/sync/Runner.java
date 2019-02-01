@@ -11,6 +11,9 @@ public class Runner {
 		
 		//Create Watchdog threads
 		new Thread(new WatchdogExternal()).start();
+		new Thread(new WatchdogInternal()).start();
+		
+		//Create GUI thread
 		
 	}
 	
