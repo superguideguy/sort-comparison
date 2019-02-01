@@ -1,5 +1,10 @@
 package com.github.superguideguy.sort.comparison.global;
 
+/**
+ * 
+ * @deprecated
+ *
+ */
 public class OtherAlgorithm {
 
 	static int[] createArray(int n) {

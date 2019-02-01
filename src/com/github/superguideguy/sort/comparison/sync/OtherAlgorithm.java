@@ -17,10 +17,17 @@ public class OtherAlgorithm {
 	 */
 	static int[] createArray(int array_size) {
 		int[] ret = new int[array_size];
+		boolean isPausedLocal = false;
 		for (int i = 0; i < array_size; i++) {
-			synchronized (isPaused) { //FIXME: Deadlocks and does not actually pause
-				ret[i] = i+1;
+			synchronized (isPaused) {
+				isPausedLocal = isPaused;
 			}
+			if (isPausedLocal) {
+				i--;
+				continue;
+			}
+			
+			ret[i] = i+1;
 		}
 		return ret;
 	}
@@ -38,13 +45,22 @@ public class OtherAlgorithm {
 	 */
 	static boolean isSorted(int[] arr) {
 		boolean ret = true;
+		boolean isPausedLocal = false;
 		for (int i = 0; i < arr.length; i++) {
-			synchronized (isPaused) { synchronized (arr) {
+			synchronized (isPaused) {
+				isPausedLocal = isPaused;
+			}
+			if (isPausedLocal) {
+				i--;
+				continue;
+			}
+			
+			synchronized (arr) {
 				if (arr[i] > arr[i+1]) {
 					ret = false;
 					break;
 				}
-			}}
+			}
 		}
 		return ret;
 	}
@@ -61,13 +77,22 @@ public class OtherAlgorithm {
 	 */
 	static boolean isReverseSorted(int[] arr) {
 		boolean ret = true;
+		boolean isPausedLocal = false;
 		for (int i = 0; i < arr.length; i++) {
-			synchronized (isPaused) { synchronized (arr) {
+			synchronized (isPaused) {
+				isPausedLocal = isPaused;
+			}
+			if (isPausedLocal) {
+				i--;
+				continue;
+			}
+			
+			synchronized (arr) {
 				if (arr[i] < arr[i+1]) {
 					ret = false;
 					break;
 				}
-			}}
+			}
 		}
 		return ret;
 	}

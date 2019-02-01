@@ -1,7 +1,11 @@
 package com.github.superguideguy.sort.comparison.global;
 
 import java.util.Arrays;
-
+/**
+ * 
+ * @deprecated
+ *
+ */
 public class Runner {
 
 	public static void main(String[] args) {
