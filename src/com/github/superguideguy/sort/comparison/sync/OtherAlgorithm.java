@@ -1,6 +1,6 @@
 package com.github.superguideguy.sort.comparison.sync;
 
-import static com.github.superguideguy.sort.comparison.sync.WatchdogExternal.isPaused;
+import static com.github.superguideguy.sort.comparison.sync.GUI.isPaused;
 
 public class OtherAlgorithm {
 

@@ -7,14 +7,13 @@ public class Runner {
 	
 	public static void main(String[] args) {
 		//Create Watchdog threads
-		new Thread(new WatchdogExternal()).start();
 		new Thread(new WatchdogInternal()).start();
 		
 		//Create array
 		arr = OtherAlgorithm.createArray(ARRAY_SIZE);
 		
 		//Create GUI thread
-		
+		new Thread(new GUI()).start();
 		//Run through test battery, and record
 		
 		//Run through test battery, just for visuals
