@@ -14,6 +14,7 @@ public class TimeKeeper implements Runnable {
 	
 	public static final int objectiveB = Runner.ARRAY_SIZE+1, objectiveE = Runner.ARRAY_SIZE+1;
 	public static boolean objectiveMet = false;
+	public static int callGUI = 0;
 	
 	@Override
 	public void run() {
@@ -27,6 +28,11 @@ public class TimeKeeper implements Runnable {
 			synchronized (Runner.arr) {
 				stop();
 				update();
+				callGUI++;
+				if (callGUI >= 10) {
+					GUI.update();
+					callGUI -= 10;
+				}
 				start();
 			}
 			

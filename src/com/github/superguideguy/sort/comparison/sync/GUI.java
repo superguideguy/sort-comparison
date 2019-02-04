@@ -3,8 +3,6 @@ package com.github.superguideguy.sort.comparison.sync;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.time.Duration;
-import java.time.Instant;
 
 import javax.swing.JFrame;
 
@@ -33,10 +31,13 @@ public class GUI implements Runnable, KeyListener {
 		frame.setName("Comparison of Sorting Methods for Partial Sorting and other Adaptive Sorting Objectives");
 		//frame.setSize(width, height);
 		frame.setBackground(Color.BLACK);
+		frame.setVisible(true);
 		
-		/**/ //TODO: More
-		
-		/**/
+	}
+	
+	public static void update() {
+		//Draw array (pre-synchronized)
+		//Draw bottom bar (TimeKeeper.t_cumm, Runner.task, TimeKeeper.current_avgRMS)
 	}
 	
 	private static void exitExternal() {
