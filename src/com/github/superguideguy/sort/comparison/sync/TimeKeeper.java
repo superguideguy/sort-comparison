@@ -53,6 +53,8 @@ public class TimeKeeper implements Runnable {
 			if (currentIsDecreasing != previousIsDecreasing) sigma_ms_inversion++;
 			previousIsDecreasing = currentIsDecreasing;
 		}
+		
+		
 	}
 	
 }

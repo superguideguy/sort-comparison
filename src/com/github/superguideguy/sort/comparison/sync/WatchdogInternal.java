@@ -14,8 +14,6 @@ public class WatchdogInternal implements Runnable {
 		t_lastGUIKick = t_now;
 	}
 
-	
-	
 	@Override
 	public void run() {
 		while(true) {
