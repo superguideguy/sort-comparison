@@ -1,16 +1,8 @@
 package com.github.superguideguy.sort.comparison.sync;
 
 public enum CurrentTask {
-	SORTING("Sorting array..."),
-	CHECKING("Checking array..."),
-	CREATING("Creating array..."),
-	SHUFFLING("Shuffling array...")
+	SHUFFLE,
+	BUBBLE_SORT,
+	COCKTAIL_SORT,
 	;
-	private final String task;
-	CurrentTask(String task) {
-		this.task = task;
-	}
-	String getTaskString() {
-		return task;
-	}
 }
