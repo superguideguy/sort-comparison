@@ -87,22 +87,4 @@ public class OtherAlgorithm {
 		}
 	}
 	
-	/**
-	 * Determines whether the array is already sorted or reverse sorted.
-	 * If the array is sorted, this algorithm returns true.
-	 * If the array is reverse sorted, this algorithm runs the flip(arr) algorithm on the array, and then returns true.
-	 * If the array is neither sorted nor reverse sorted, this algorithm returns false.
-	 * 
-	 * @param arr 
-	 * @return
-	 * 
-	 * Runs on average in O(log n) time. Runs at worst in O(n) time.
-	 * Requires at most O(n) additional memory.
-	 * If the array is not reverse sorted, this algorithm is stable. Else, this algorithm is antistable.
-	 */
-	static boolean preCheck(int[] arr) {
-		//if (isReverseSorted(arr)) {ShufflingAlgorithm.flip(arr); return true;} //TODO: Remember
-		if (isSorted(arr)) return true;
-		return false;
-	}
 }

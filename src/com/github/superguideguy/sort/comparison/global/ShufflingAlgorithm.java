@@ -2,6 +2,11 @@ package com.github.superguideguy.sort.comparison.global;
 
 import java.util.Random;
 
+/**
+ * 
+ * @deprecated
+ *
+ */
 public class ShufflingAlgorithm {
 	
 	/**
