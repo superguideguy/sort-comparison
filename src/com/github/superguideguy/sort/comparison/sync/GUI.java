@@ -5,10 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class GUI implements Runnable, KeyListener {
 	
 	static JFrame frame;
+	static JPanel mainPanel, sidePanel;
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
@@ -29,9 +31,20 @@ public class GUI implements Runnable, KeyListener {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Comparison of Sorting Methods for Partial Sorting and other Adaptive Sorting Objectives");
-		frame.setSize(800,400);
+		frame.setSize(1000,550);
 		frame.setBackground(Color.BLACK);
 		frame.setForeground(Color.BLACK);
+		
+		mainPanel = new JPanel();
+		mainPanel.setSize(1000, 500);
+		mainPanel.setBackground(Color.BLACK);
+		frame.add(mainPanel);
+		
+		sidePanel = new JPanel();
+		sidePanel.setSize(1000, 50);
+		sidePanel.setBackground(Color.GRAY);
+		frame.add(sidePanel);
+		
 		frame.setVisible(true);
 		
 	}
