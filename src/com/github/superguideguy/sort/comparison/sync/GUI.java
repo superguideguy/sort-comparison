@@ -28,9 +28,10 @@ public class GUI implements Runnable, KeyListener {
 		// TODO Auto-generated method stub
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setName("Comparison of Sorting Methods for Partial Sorting and other Adaptive Sorting Objectives");
-		//frame.setSize(width, height);
+		frame.setTitle("Comparison of Sorting Methods for Partial Sorting and other Adaptive Sorting Objectives");
+		frame.setSize(800,400);
 		frame.setBackground(Color.BLACK);
+		frame.setForeground(Color.BLACK);
 		frame.setVisible(true);
 		
 	}
