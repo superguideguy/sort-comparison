@@ -23,6 +23,13 @@ public class Runner {
 		SortingAlgorithmExchange.bubbleSort(arr);
 		Report r = new Report(task,TimeKeeper.t_obj,TimeKeeper.t_total,TimeKeeper.sigma_ms_inversion,TimeKeeper.sigma_ms_avgRMS);
 		System.out.println(r.toString());
+		
+		ShufflingAlgorithm.shuffleArray(arr);
+		TimeKeeper.clear();
+		SortingAlgorithmExchange.cocktailSort(arr);
+		r = new Report(task,TimeKeeper.t_obj,TimeKeeper.t_total,TimeKeeper.sigma_ms_inversion,TimeKeeper.sigma_ms_avgRMS);
+		System.out.println(r.toString());
+		
 		System.exit(0);
 		
 		//Run through test battery, just for visuals

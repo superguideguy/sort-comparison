@@ -27,4 +27,9 @@ public class Report {
 		return new String(ret);
 	}
 	
+	public static void miniReport(CurrentTask task, Duration t_current, String s) {
+		String x = "" + task.name() + ":\t" + t_current.toMillis() + "ms\t" + s;
+		System.out.println(x);
+	}
+	
 }

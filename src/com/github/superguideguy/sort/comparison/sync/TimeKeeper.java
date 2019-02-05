@@ -12,8 +12,8 @@ public class TimeKeeper implements Runnable {
 	static double sigma_ms_avgRMS = 0, current_avgRMS = 0;
 	static int correct_begin = 0, correct_end = 0;
 	
-	public static final int objectiveB = 1_000, objectiveE = 1_000;
-	public static boolean objectiveMet = false;
+	public static int objectiveB = 1_000, objectiveE = 1_000;
+	public static int objBcurrent = objectiveB, objEcurrent = objectiveE;
 	public static int callGUI = 0;
 	
 	@Override
@@ -86,13 +86,21 @@ public class TimeKeeper implements Runnable {
 			if (Runner.arr[i] == i+1) correct_begin++;
 			else break;
 		}
+		if (correct_begin >= objBcurrent) {
+			objBcurrent = correct_begin - (correct_begin % objectiveB);
+			objBcurrent += objectiveB;
+			Report.miniReport(Runner.task, t_cumm, "FIRST " + correct_begin + " SORTED");
+		}
+		
+		correct_end = 0;
 		for (int i = Runner.arr.length - 1; i >= 0; i--) {
 			if (Runner.arr[i] == i+1) correct_end++;
 			else break;
 		}
-		if (((correct_begin >= objectiveB) || (correct_end >= objectiveE)) && (!objectiveMet)){
-			objectiveMet = true;
-			t_obj = t_cumm.plus(Duration.ZERO);
+		if (correct_end >= objEcurrent) {
+			objEcurrent = correct_end - (correct_end % objectiveE);
+			objEcurrent += objectiveE;
+			Report.miniReport(Runner.task, t_cumm, "LAST " + correct_end + " SORTED");
 		}
 		
 	}
@@ -109,7 +117,8 @@ public class TimeKeeper implements Runnable {
 		correct_begin = 0;
 		correct_end = 0;
 		
-		objectiveMet = false;
+		objEcurrent = objectiveE;
+		objBcurrent = objectiveB;
 		callGUI = 0;
 	}
 	
