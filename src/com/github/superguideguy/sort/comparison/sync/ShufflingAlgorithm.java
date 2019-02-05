@@ -21,10 +21,16 @@ public class ShufflingAlgorithm {
 	 * @param arr
 	 */
 	synchronized static void shuffleArray(int[] arr) {
+		synchronized (Runner.task) {
+			Runner.task = CurrentTask.SHUFFLE;
+		}
 		Random r = new Random();
 		for (int i = arr.length - 1; i >= 1; i--) {
 			int j = r.nextInt(i+1);
 			exchange(arr,i,j);
+		}
+		synchronized (Runner.task) {
+			Runner.task = CurrentTask.WAIT;
 		}
 	}
 	

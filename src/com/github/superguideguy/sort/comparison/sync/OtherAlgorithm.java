@@ -30,7 +30,7 @@ public class OtherAlgorithm {
 	 */
 	static boolean isSorted(int[] arr) {
 		boolean ret = true;
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < arr.length - 1; i++) {
 			synchronized (arr) {
 				if (arr[i] > arr[i+1]) {
 					ret = false;
@@ -52,7 +52,7 @@ public class OtherAlgorithm {
 	 */
 	static boolean isReverseSorted(int[] arr) {
 		boolean ret = true;
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < arr.length - 1; i++) {
 			synchronized (arr) {
 				if (arr[i] < arr[i+1]) {
 					ret = false;
