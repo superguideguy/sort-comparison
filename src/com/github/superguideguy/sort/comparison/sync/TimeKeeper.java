@@ -20,7 +20,7 @@ public class TimeKeeper implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while (true) try {
-			Thread.sleep(1000);
+			Thread.sleep(0,500000);
 			synchronized (Runner.task) {
 				if (Runner.task == CurrentTask.SHUFFLE) continue;
 				if (Runner.task == CurrentTask.WAIT) continue;
