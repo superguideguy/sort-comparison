@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Runner {
 
 	public static int[] arr;
-	public static final int ARRAY_SIZE = 10_000;
+	public static final int ARRAY_SIZE = 25_000;
 	public static CurrentTask task = CurrentTask.WAIT;
 	
 	public static void main(String[] args) {
@@ -21,14 +21,22 @@ public class Runner {
 		ShufflingAlgorithm.shuffleArray(arr);
 		TimeKeeper.clear();
 		SortingAlgorithmExchange.bubbleSort(arr);
-		Report r = new Report(task,TimeKeeper.t_obj,TimeKeeper.t_total,TimeKeeper.sigma_ms_inversion,TimeKeeper.sigma_ms_avgRMS);
-		System.out.println(r.toString());
+		Report.miniReport(task, TimeKeeper.t_cumm, "COMPLETE " + (TimeKeeper.current_avgRMS + TimeKeeper.current_inversions));
 		
 		ShufflingAlgorithm.shuffleArray(arr);
 		TimeKeeper.clear();
 		SortingAlgorithmExchange.cocktailSort(arr);
-		r = new Report(task,TimeKeeper.t_obj,TimeKeeper.t_total,TimeKeeper.sigma_ms_inversion,TimeKeeper.sigma_ms_avgRMS);
-		System.out.println(r.toString());
+		Report.miniReport(task, TimeKeeper.t_cumm, "COMPLETE " + (TimeKeeper.current_avgRMS + TimeKeeper.current_inversions));
+		
+		ShufflingAlgorithm.shuffleArray(arr);
+		TimeKeeper.clear();
+		SortingAlgorithmSelectionInsertion.selectionSort(arr);
+		Report.miniReport(task, TimeKeeper.t_cumm, "COMPLETE " + (TimeKeeper.current_avgRMS + TimeKeeper.current_inversions));
+		
+		ShufflingAlgorithm.shuffleArray(arr);
+		TimeKeeper.clear();
+		SortingAlgorithmSelectionInsertion.insertionSort(arr);
+		Report.miniReport(task, TimeKeeper.t_cumm, "COMPLETE " + (TimeKeeper.current_avgRMS + TimeKeeper.current_inversions));
 		
 		System.exit(0);
 		

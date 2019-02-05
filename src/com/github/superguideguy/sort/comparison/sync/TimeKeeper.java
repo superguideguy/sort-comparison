@@ -8,7 +8,7 @@ public class TimeKeeper implements Runnable {
 	static Duration t_total, t_obj, t_cumm;
 	static Instant t_begin, t_end;
 	
-	static long sigma_ms_inversion = 0;
+	static long sigma_ms_inversion = 0, current_inversions = 0;
 	static double sigma_ms_avgRMS = 0, current_avgRMS = 0;
 	static int correct_begin = 0, correct_end = 0;
 	
@@ -20,7 +20,7 @@ public class TimeKeeper implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		while (true) try {
-			Thread.sleep(1);
+			Thread.sleep(1000);
 			synchronized (Runner.task) {
 				if (Runner.task == CurrentTask.SHUFFLE) continue;
 				if (Runner.task == CurrentTask.WAIT) continue;
@@ -29,9 +29,10 @@ public class TimeKeeper implements Runnable {
 				stop();
 				update();
 				callGUI++;
-				if (callGUI >= 10) {
+				if (callGUI >= 1) {
 					//GUI.update();
-					callGUI -= 10;
+					report();
+					callGUI -= 1;
 				}
 				start();
 			}
@@ -60,11 +61,15 @@ public class TimeKeeper implements Runnable {
 	
 	static void update() {
 		//Inversions
+		current_inversions = 0;
 		boolean previousIsDecreasing = false, currentIsDecreasing = false;
 		for (int i = 0; i < Runner.arr.length - 1; i++) {
 			if (Runner.arr[i] > Runner.arr[i+1]) currentIsDecreasing = true;
 			if (Runner.arr[i] < Runner.arr[i+1]) currentIsDecreasing = false;
-			if (currentIsDecreasing != previousIsDecreasing) sigma_ms_inversion++; //System.err.println(sigma_ms_inversion);
+			if (currentIsDecreasing != previousIsDecreasing){
+				current_inversions++;
+				sigma_ms_inversion++;
+			}
 			previousIsDecreasing = currentIsDecreasing;
 		}
 		
@@ -120,6 +125,13 @@ public class TimeKeeper implements Runnable {
 		objEcurrent = objectiveE;
 		objBcurrent = objectiveB;
 		callGUI = 0;
+	}
+	
+	static void report() {
+		Report.miniReport(Runner.task, t_cumm, "FIRST " + correct_begin + " SORTED");
+		Report.miniReport(Runner.task, t_cumm, "LAST " + correct_end + " SORTED");
+		Report.miniReport(Runner.task, t_cumm, "" + current_inversions + " INVERSIONS");
+		Report.miniReport(Runner.task, t_cumm, "AVERAGE DISTANCE: " + current_avgRMS);
 	}
 	
 }
