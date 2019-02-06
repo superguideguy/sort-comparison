@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Runner {
 
 	public static int[] arr;
-	public static final int ARRAY_SIZE = 100_000;
+	public static final int ARRAY_SIZE = 1_000_000;
 	public static CurrentTask task = CurrentTask.WAIT;
 	
 	public static void main(String[] args) {
@@ -24,14 +24,6 @@ public class Runner {
 		SortingAlgorithmSelectionInsertion.shellsortA168604(arr);
 		try { Thread.sleep(100); } catch (Exception e) { }
 		Report.miniReport(task, TimeKeeper.t_cumm, "COMPLETE " + (TimeKeeper.current_avgRMS + TimeKeeper.current_inversions));
-		
-		
-		ShufflingAlgorithm.shuffleArray(arr);
-		TimeKeeper.clear();
-		SortingAlgorithmOther.pigeonholeSort(arr);
-		try { Thread.sleep(100); } catch (Exception e) { }
-		Report.miniReport(task, TimeKeeper.t_cumm, "COMPLETE " + (TimeKeeper.current_avgRMS + TimeKeeper.current_inversions));
-		
 		
 		System.exit(0);
 		
