@@ -77,7 +77,7 @@ public class TimeKeeper implements Runnable {
 		current_avgRMS = 0;
 		double z = 0;
 		for (int i = 0; i < Runner.arr.length; i++) {
-			double x = Runner.arr[i] - Runner.arr[Runner.arr[i]-1];
+			double x = i - (Runner.arr[i]-1);
 			z += Math.pow(x, 2);
 		}
 		z = z / Runner.arr.length;
