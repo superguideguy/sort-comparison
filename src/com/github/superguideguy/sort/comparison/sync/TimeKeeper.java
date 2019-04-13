@@ -15,12 +15,13 @@ public class TimeKeeper implements Runnable {
 	public static int objectiveB = 1_000, objectiveE = 1_000;
 	public static int objBcurrent = objectiveB, objEcurrent = objectiveE;
 	public static int callGUI = 0;
+	public static boolean isCopied = false;
 	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		while (true) try {
-			Thread.sleep(0,500000);
+			Thread.sleep(10000); //[[***]]
 			synchronized (Runner.task) {
 				if (Runner.task == CurrentTask.SHUFFLE) continue;
 				if (Runner.task == CurrentTask.WAIT) continue;
@@ -84,6 +85,12 @@ public class TimeKeeper implements Runnable {
 		z = Math.sqrt(z);
 		current_avgRMS = z;
 		sigma_ms_avgRMS += current_avgRMS;
+		if ((current_avgRMS <= 1) && !isCopied){ //[[***]]
+			for (int i = 0; i < Runner.arr.length; i++) {
+				Runner.copy[i] = Runner.arr[i];
+			}
+			isCopied = true;
+		}
 		
 		//Correct beginning/ending
 		correct_begin = 0;
@@ -94,7 +101,7 @@ public class TimeKeeper implements Runnable {
 		if (correct_begin >= objBcurrent) {
 			objBcurrent = correct_begin - (correct_begin % objectiveB);
 			objBcurrent += objectiveB;
-			Report.miniReport(Runner.task, t_cumm, "FIRST " + correct_begin + " SORTED");
+			//Report.miniReport(Runner.task, t_cumm, "FIRST " + correct_begin + " SORTED");
 		}
 		
 		correct_end = 0;
@@ -105,7 +112,7 @@ public class TimeKeeper implements Runnable {
 		if (correct_end >= objEcurrent) {
 			objEcurrent = correct_end - (correct_end % objectiveE);
 			objEcurrent += objectiveE;
-			Report.miniReport(Runner.task, t_cumm, "LAST " + correct_end + " SORTED");
+			//Report.miniReport(Runner.task, t_cumm, "LAST " + correct_end + " SORTED");
 		}
 		
 	}
@@ -132,6 +139,7 @@ public class TimeKeeper implements Runnable {
 		Report.miniReport(Runner.task, t_cumm, "LAST " + correct_end + " SORTED");
 		Report.miniReport(Runner.task, t_cumm, "" + current_inversions + " INVERSIONS");
 		Report.miniReport(Runner.task, t_cumm, "AVERAGE DISTANCE: " + current_avgRMS);
+		System.out.println();
 	}
 	
 }

@@ -10,9 +10,10 @@ public class SortingAlgorithmSelectionInsertion {
 		
 		for (int i = 0; i < arr.length - 1; i++) {
 			int lowestIndex = i;
+			//try { TimeKeeper.stop(); Thread.sleep(0,500000); TimeKeeper.start(); } catch (Exception e) { }
+			for (int j = i+1; j < arr.length; j++) if (arr[j] < arr[lowestIndex])
+				lowestIndex = j;
 			synchronized (arr) {
-				for (int j = i+1; j < arr.length; j++) if (arr[j] < arr[lowestIndex])
-					lowestIndex = j;
 				ShufflingAlgorithm.exchange(arr, i, lowestIndex);
 			}
 		}
@@ -27,9 +28,9 @@ public class SortingAlgorithmSelectionInsertion {
 		}
 		TimeKeeper.start();
 		
-		for (int i = 1; i < arr.length; i++)
+		for (int i = 1; i < arr.length; i++) for (int j = i; (j > 0) && (arr[j-1] > arr[j]) ; j--)
 			synchronized (arr) {
-				for (int j = i; (j > 0) && (arr[j-1] > arr[j]) ; j--) ShufflingAlgorithm.exchange(arr, j, j-1);
+				 ShufflingAlgorithm.exchange(arr, j, j-1);
 			}
 		
 		TimeKeeper.stop();
@@ -47,9 +48,9 @@ public class SortingAlgorithmSelectionInsertion {
 		
 		for (int i = exp; i > 0; i--) {
 			gap = (int) Math.pow(2, i)-1;
-			for (int j = gap; j < arr.length; j++) {
+			for (int j = gap; j < arr.length; j++) for (int k = j; (k >= gap) && (arr[k-gap] > arr[k]) ; k-=gap) {
 				synchronized (arr) {
-					for (int k = j; (k >= gap) && (arr[k-gap] > arr[k]) ; k-=gap) ShufflingAlgorithm.exchange(arr, k, k-gap);
+					 ShufflingAlgorithm.exchange(arr, k, k-gap);
 				}
 			}
 		}

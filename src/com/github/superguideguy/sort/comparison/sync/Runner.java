@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class Runner {
 
-	public static int[] arr;
-	public static final int ARRAY_SIZE = 1_000_000;
+	public static int[] arr, copy;
+	public static final int ARRAY_SIZE = 10_000_000;
 	public static CurrentTask task = CurrentTask.WAIT;
 	
 	public static void main(String[] args) {
@@ -14,17 +14,31 @@ public class Runner {
 		//new Thread(new GUI()).start();
 		new Thread(new TimeKeeper()).start();
 		
+		for (int i = 0; i < 1; i++) {
+		
 		//Create array
 		arr = OtherAlgorithm.createArray(ARRAY_SIZE);
+		copy = new int[ARRAY_SIZE];
 		sum(arr);
 		
 		//Run through test battery, and record
 		ShufflingAlgorithm.shuffleArray(arr);
 		TimeKeeper.clear();
-		SortingAlgorithmSelectionInsertion.shellsortA168604(arr);
-		try { Thread.sleep(100); } catch (Exception e) { }
+		SortingAlgorithmSelectionInsertion.selectionSort(arr);
+		try { Thread.sleep(5); } catch (Exception e) { }
+		TimeKeeper.update();
 		Report.miniReport(task, TimeKeeper.t_cumm, "COMPLETE " + (TimeKeeper.current_avgRMS + TimeKeeper.current_inversions));
 		
+		} 
+		
+	/*	TimeKeeper.clear();
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = copy[i];
+		SortingAlgorithmExchange.cocktailSort(arr);
+		try { Thread.sleep(5); } catch (Exception e) { }
+		TimeKeeper.update();
+		Report.miniReport(task, TimeKeeper.t_cumm, "COMPLETE " + (TimeKeeper.current_avgRMS + TimeKeeper.current_inversions));
+		*/
 		System.exit(0);
 		
 		//Run through test battery, just for visuals
